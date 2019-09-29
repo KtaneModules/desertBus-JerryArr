@@ -13,13 +13,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: desertBus
   title: Desert Bus
-  description: 'Desert Bus v1.00
+  description: 'Desert Bus v1.01
 
     So grab a pen and tell ''er... that you''re defusing a bomb.
 
 
 
     Manual to be available here: https://ktane.timwi.de/HTML/Desert%20Bus.html'
-  version: 1.00
+  version: 1.01
   outputFolder: build
-  previewImage: {fileID: 0}
+  previewImage: {fileID: 2800000, guid: d64b8b979671bd3419f2c54e61b576cf, type: 3}

@@ -330,6 +330,48 @@ public class desertBus : MonoBehaviour
 		}
 	}
 
+#pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"Use !{0} (left/l/right/r/start/s) to press a button.";
+    private readonly bool TwitchShouldCancelCommand = false;
+#pragma warning restore 414
+
+    private IEnumerator ProcessTwitchCommand(string command)
+    {
+        //tpActive = true;
+        var piecesRaw = command.ToLowerInvariant().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        string theError;
+        theError = "";
+        yield return null;
+		if (piecesRaw.Count() == 0)
+        {
+            theError = "sendtochaterror No arguments! You need to use (left/l/right/r/start/s) to press a button.";
+            yield return theError;
+        }
+		else if (piecesRaw[0] == "left" || piecesRaw[0] == "l")
+        {
+			yield return new WaitForSeconds(.1f);
+			yield return null;
+			pressedLeft();
+		}
+		else if (piecesRaw[0] == "right" || piecesRaw[0] == "r")
+        {
+			yield return new WaitForSeconds(.1f);
+			yield return null;
+			pressedRight();
+		}
+		else if (piecesRaw[0] == "start" || piecesRaw[0] == "s")
+        {
+			yield return new WaitForSeconds(.1f);
+			yield return null;
+			pressedStart();
+		}
+		else
+		{
+                theError = "sendtochaterror Sorry, I did not recognize the command: '" + piecesRaw[0] + "'. You must use left, right, start, l, r, or s.";
+                yield return theError;			
+		}
+	}
+
 	protected bool pressedStart()
 	{
 		if (active && specialPhase)
@@ -347,7 +389,6 @@ public class desertBus : MonoBehaviour
 			roadLane.material.mainTexture = roadPos[roadPosition];
 			laneMarker.material.mainTexture = roadNum[((roadPosition * 3) + roadNumber)];
 			needy.SetNeedyTimeRemaining(120.1f);
-			Debug.Log("Fucking start");
 		}
 		else
 		{
